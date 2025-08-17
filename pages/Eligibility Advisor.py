@@ -1,5 +1,5 @@
 import streamlit as st
-from helper_functions import func
+from helper_functions.func import eligiblity_user_input, eligibility_model, check_for_malicious_intent
 from helper_functions.utility import check_password
 
 ## Create a LLM-assisted bot to help provide scripts or strategies for better negotation deals
@@ -38,13 +38,13 @@ print(f"User question: {question}")
 # Submit of user inputs to the LLM
 if st.button("Get Advice"):
     if question:
-        if func.check_for_malicious_intent(question) == 'Y':
+        if check_for_malicious_intent(question) == 'Y':
             st.write("Sorry, we cannot process this request.")
         else:
             with st.spinner("Getting advice..."):
-                user_input = func.eligiblity_user_input(ppty_type,citizenship,age, properties,income,annual_val,question)
+                user_input = eligiblity_user_input(ppty_type,citizenship,age, properties,income,annual_val,question)
                 print(f"User info: {user_input}")
-                response = func.eligibility_model(user_input)["result"]
+                response = eligibility_model(user_input)["result"]
                 st.subheader("Eligibility Advice")
                 st.write(response)
     else:
