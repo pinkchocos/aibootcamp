@@ -1,6 +1,6 @@
 import streamlit as st
 import hmac
-
+import random
 # """
 # This file contains the common components used in the Streamlit App.
 # This includes the sidebar, the title, the footer, and the password check.
